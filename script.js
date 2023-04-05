@@ -1,36 +1,25 @@
 //your code here
-let itemInput = document.getElementById('item-name-input');
-let priceInput = document.getElementById('item-price-input');
+let grandtotal = 0;
 
-let button = document.getElementById('add');
-
-let table = document.getElementById('table');
-let total = document.getElementById('total');
-
-let priceArr = [];
-function addItem() {
-    let item = itemInput.value;
-    let price = priceInput.value;
-    let sum = 0;
-
-    if (item !== '' && price !== "") {
-        // you can start items to the screen
-        let row = document.createElement('tr');
-        priceArr.push(parseInt(price));
-        // console.log(priceArr);
-        row.innerHTML = `<td>${item} </td> <td>${price}</td> `
-        
-        for (let i = 0; i < priceArr.length; i++) {
-            sum += priceArr[i];
-        }
-        
-        console.log(sum);
-        table.append(row);
-        total.innerText = sum;
-        
-        itemInput.value = '';
-        priceInput.value = '';
-    }
+function addData(){
+    let name=document.querySelector("#item-name-input").value;
+    let qty=document.querySelector("#item-qty-input").value;
+    let price=document.querySelector("#item-price-input").value;
+    console.log(name, qty, price);
+    let item=document.createElement("tr");
+    let td1=document.createElement("td");
+    td1.textContent=name;
+    let td2=document.createElement("td");
+    td2.textContent=qty;
+    let td3=document.createElement("td");
+    td3.textContent=price;
+    let td4=document.createElement("td");
+    td4.textContent=qty*price;
+    item.append(td1,td2,td3,td4);
+    document.querySelector("tbody").append(item);
+    grandtotal+=qty*price;
+    document.querySelector("#grand_total").textContent=grandtotal;
+    document.querySelector("#myinputs").reset();
 }
 
-button.addEventListener('click', addItem);
+    
